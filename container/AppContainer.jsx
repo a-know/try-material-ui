@@ -2,8 +2,8 @@ import React, { useMemo } from 'react'
 import { bindActionCreators } from 'redux'
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from '../components/header/HeaderComponent';
-import Counter from '../components/counter/CounterComponent';
+import Header from '../components/HeaderComponent';
+import Counter from '../components/CounterComponent';
 import CounterActions from '../actions/counter';
 
 const useActions = (actions, deps) => {
