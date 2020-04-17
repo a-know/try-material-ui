@@ -6,6 +6,7 @@ import Header from '../components/HeaderComponent';
 import Counter from '../components/CounterComponent';
 import { increment, decrement } from '../slices/counter';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import * as Colors from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,17 +28,18 @@ const useActions = (actions, deps) => {
   )
 };
 
-const AppContainer = (props) => {
+const AppContainer = () => {
   // sliceの全てのactionを使う場合は、slice.actionsを渡してもいい
   const counterActions = useActions({ increment, decrement });
   const counter = useSelector(state => state.counter);
 
-  const _counterProps = { counter, counterActions, ...props };
   return (
-    <div>
-      <Header />
-      <Counter {..._counterProps} />
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <div>
+        <Header />
+        <Counter counter={counter} counterActions={counterActions} />
+      </div>
+    </MuiThemeProvider>
   );
 };
 
