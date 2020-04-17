@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../components/HeaderComponent';
 import Counter from '../components/CounterComponent';
-import CounterActions from '../actions/counter';
+import { increment, decrement } from '../slices/counter';
 
 const useActions = (actions, deps) => {
   const dispatch = useDispatch();
@@ -20,7 +20,8 @@ const useActions = (actions, deps) => {
 };
 
 const AppContainer = (props) => {
-  const counterActions = useActions(CounterActions);
+  // sliceの全てのactionを使う場合は、slice.actionsを渡してもいい
+  const counterActions = useActions({ increment, decrement });
   const counter = useSelector(state => state.counter);
 
   const _counterProps = { counter, counterActions, ...props };
