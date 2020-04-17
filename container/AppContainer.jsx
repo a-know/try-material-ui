@@ -20,6 +20,7 @@ const useActions = (actions, deps) => {
 };
 
 const AppContainer = (props) => {
+  // sliceの全てのactionを使う場合は、slice.actionsを渡してもいい
   const counterActions = useActions({ increment, decrement });
   const counter = useSelector(state => state.counter);
 
