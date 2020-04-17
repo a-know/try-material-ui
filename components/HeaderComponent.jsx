@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     color: Colors.common.white,
+    position: "relative"
   },
 }));
 
