@@ -29,6 +29,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: { 'react-dom': '@hot-loader/react-dom' },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,5 +57,6 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     disableHostCheck: true
-  }
+  },
+  devtool: 'inline-source-map'
 };
