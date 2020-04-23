@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -49,4 +50,4 @@ const AppContainer = () => {
   );
 };
 
-export default AppContainer;
+export default hot(AppContainer);
