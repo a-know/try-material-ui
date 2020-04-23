@@ -1,43 +1,49 @@
-import React, { useMemo } from 'react'
-import { bindActionCreators } from 'redux'
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import * as Colors from '@material-ui/core/colors';
 
 import Header from '../components/HeaderComponent';
-import Counter from '../components/CounterComponent';
-import { increment, decrement } from '../slices/counter';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import * as Colors from '@material-ui/core/colors';
+import TopContainer from './top/TopContainer';
+import LoginContainer from './login/LoginContainer';
+import CounterContainer from './counter/CounterContainer';
+import SampleContainer from './sample/SampleContainer';
+import NotFound from './NotFound';
 
 const theme = createMuiTheme({
   palette: {
-    primary: Colors.purple,
-    secondary: Colors.green,
+    primary: Colors.lightBlue,
+    secondary: Colors.yellow,
   },
 });
 
-const useActions = (actions, deps) => {
-  const dispatch = useDispatch();
-  return useMemo(
-    () => {
-      if (Array.isArray(actions)) {
-        return actions.map(a => bindActionCreators(a, dispatch))
-      }
-      return bindActionCreators(actions, dispatch)
-    },
-    deps ? [dispatch, ...deps] : [dispatch]
-  )
-};
-
 const AppContainer = () => {
-  // sliceの全てのactionを使う場合は、slice.actionsを渡してもいい
-  const counterActions = useActions({ increment, decrement });
-  const counter = useSelector(state => state.counter);
-
+  useEffect(() => {
+    console.log('AppContainer:useEffectによる初回処理');
+  }, []);
   return (
     <MuiThemeProvider theme={theme}>
       <div>
         <Header />
-        <Counter counter={counter} counterActions={counterActions} />
+        <div id="contents">
+          <Router>
+            <Switch>
+              <Route path="/" exact>
+                <TopContainer />
+              </Route>
+              <Route path="/login" exact>
+                <LoginContainer />
+              </Route>
+              <Route path="/counter" exact>
+                <CounterContainer />
+              </Route>
+              <Route path="/sample" exact>
+                <SampleContainer />
+              </Route>
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
+        </div>
       </div>
     </MuiThemeProvider>
   );

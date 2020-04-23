@@ -21,6 +21,10 @@ module.exports = {
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'] },
       // cssファイルのload処理
       { test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader'], },
+      {
+        test: /\.(png|gif|jpg)$/,
+        loader: 'file-loader?context=src/assets&name=[path][name].[ext]',
+      },
     ],
   },
   resolve: {
