@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { bindActionCreators } from 'redux'
 import { useDispatch, useSelector } from 'react-redux';
 import Counter from '../../components/CounterComponent';
-import { increment, decrement } from '../slices/counter';
+import { increment, decrement } from '../../slices/counter';
 
 const useActions = (actions, deps) => {
   const dispatch = useDispatch();
